@@ -1,8 +1,11 @@
-import { Button } from '@mui/material'
+import { Container } from '@mui/material';
+import DesignStepper from './DesignStepper';
 
 function App() {
   return (
-    <Button></Button>
+    <Container>
+      <DesignStepper />
+    </Container>
   );
 }
 
