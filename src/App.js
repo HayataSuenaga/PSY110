@@ -1,10 +1,12 @@
 import { Container } from '@mui/material';
-import DesignStepper from './DesignStepper';
+import Hypothesis from './components/hypthesis/Hypothesis';
+import Variables from './components/variables/Variables';
 
 function App() {
   return (
     <Container>
-      <DesignStepper />
+      <Hypothesis />
+      <Variables />
     </Container>
   );
 }
