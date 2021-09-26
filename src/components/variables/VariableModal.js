@@ -1,11 +1,7 @@
 import {
   Modal,
   Grid,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
   TextField,
-  Box,
   Chip,
   Paper,
   Button,
@@ -27,7 +23,7 @@ const VariableType = {
   dependent: 'dependent',
 };
 
-const Popup = props => {
+const VariableModal = props => {
   const { open, handleClose } = props;
   const [type, setType] = useState(VariableType.independent);
   const [variableName, setVariableName] = useState('');
@@ -85,4 +81,4 @@ const Popup = props => {
   );
 };
 
-export default Popup;
+export default VariableModal;

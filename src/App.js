@@ -1,13 +1,16 @@
 import { Container } from '@mui/material';
-import Hypothesis from './components/hypthesis/Hypothesis';
-import Variables from './components/variables/Variables';
+import ExperienceStepper from './ExperienceStepper';
 
 function App() {
   return (
     <Container>
-      <Hypothesis />
-      <Variables />
+      <ExperienceStepper />
     </Container>
+    // <Container>
+    //   <Hypothesis />
+    //   <Variables />
+    //   <PopulationPage />
+    // </Container>
   );
 }
 
