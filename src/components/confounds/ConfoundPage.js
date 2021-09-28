@@ -1,6 +1,6 @@
 import { Grid, Paper, Typography } from '@mui/material';
 
-import { confoundText } from '../../Texts';
+import { confoundText } from '../../data/texts';
 import ConfoundTable from './ConfoundTable';
 
 const createConfound = (name, measure) => ({ name, measure });

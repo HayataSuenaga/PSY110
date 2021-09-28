@@ -6,11 +6,18 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Button
+  Button,
 } from '@mui/material';
-import Variable from './VariableRow';
+import VariableRow from './VariableRow';
 
-const VariableTable = ({ variables }) => {
+const blankVariable = {
+  id: undefined,
+  type: 'dependent',
+  name: 'fuck fuck fuck',
+  description: 'fuck fuck fuck',
+};
+
+const VariableTable = ({ variables, setOpen, onSelect, onDelete }) => {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -20,13 +27,24 @@ const VariableTable = ({ variables }) => {
             <TableCell>Variable name</TableCell>
             <TableCell>Description</TableCell>
             <TableCell>
-              <Button>Add</Button>
+              <Button onClick={() => {
+                onSelect(blankVariable);
+                setOpen(true);
+              }}>
+                Add
+              </Button>
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {variables.map((variable, index) => (
-            <Variable variable={variable} />
+            <VariableRow
+              key={index}
+              variable={variable}
+              setOpen={setOpen}
+              onSelect={onSelect}
+              onDelete={onDelete}
+            />
           ))}
         </TableBody>
       </Table>

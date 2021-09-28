@@ -3,7 +3,7 @@ import { Grid, Button, Card, TextField, useTheme, Typography } from '@mui/materi
 import OpDefModal from './OpDefModal';
 import OpDefTable from './OpDefTable';
 
-import { hypothesis } from '../../Texts';
+import { hypothesis } from '../../data/texts';
 import { useState } from 'react';
 
 const createOpDef = (term, def) => ({ term, def });

@@ -8,16 +8,16 @@ import {
   Typography,
 } from '@mui/material';
 
-import HypothesisPage from './components/hypthesis/HypothesisPage';
-import Variables from './components/variables/VariablePage';
-import PopulationPage from './components/population/PopulationPage';
-import ConfoundPage from './components/confounds/ConfoundPage';
+import HypothesisPage from './hypthesis/HypothesisPage';
+import Variables from './variables/VariablePage';
+import PopulationPage from './population/PopulationPage';
+import ConfoundPage from './confounds/ConfoundPage';
 
 import { useTheme } from '@mui/material';
 
 const steps = ['Hypothesis', 'Variables', 'Sample', 'Potential confounds'];
 
-const ExperienceStepper = () => {
+const ExperimentStepper = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => setActiveStep(activeStep + 1);
@@ -94,4 +94,4 @@ const ExperienceStepper = () => {
   );
 };
 
-export default ExperienceStepper;
+export default ExperimentStepper;

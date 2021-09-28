@@ -27,7 +27,7 @@ const OpDefTable = ({ opDefs }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {opDefs.map(opDef => <OpDefRow opDef={opDef} />)}
+          {opDefs.map((opDef, index) => <OpDefRow key={index} opDef={opDef} />)}
         </TableBody>
       </Table>
     </TableContainer>

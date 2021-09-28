@@ -24,10 +24,11 @@ const VariableType = {
 };
 
 const VariableModal = props => {
-  const { open, handleClose } = props;
-  const [type, setType] = useState(VariableType.independent);
-  const [variableName, setVariableName] = useState('');
-  const [explanation, setExplanation] = useState('');
+  const { variable, open, handleClose, onSave } = props;
+  console.log('variable', variable);
+  const [type, setType] = useState(variable.type);
+  const [name, setName] = useState(variable.name);
+  const [description, setDescription] = useState(variable.description);
   const toggleType = () =>
     setType(
       type === VariableType.dependent
@@ -57,8 +58,8 @@ const VariableModal = props => {
           <Grid item>
             <TextField
               label="variable name"
-              value={variableName}
-              onChange={e => setVariableName(e.target.value)}
+              value={name}
+              onChange={e => setName(e.target.value)}
               variant="standard"
               fullWidth
             />
@@ -66,14 +67,21 @@ const VariableModal = props => {
           <Grid item>
             <TextField
               label="explanation"
-              value={explanation}
-              onChange={e => setExplanation(e.target.value)}
+              value={description}
+              onChange={e => setDescription(e.target.value)}
               variant="standard"
               fullWidth
             />
           </Grid>
           <Grid item sx={{ marginLeft: 'auto' }}>
-            <Button onClick={handleClose}>Done</Button>
+            <Button
+              onClick={() => {
+                handleClose();
+                onSave(variable.id, type, name, description);
+              }}
+            >
+              Done
+            </Button>
           </Grid>
         </Grid>
       </Paper>

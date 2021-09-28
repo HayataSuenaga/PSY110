@@ -28,9 +28,7 @@ const ConfoundTable = ({ confounds }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {confounds.map(confound => (
-            <ConfoundRow confound={confound} />
-          ))}
+          {confounds.map((confound, index) => <ConfoundRow key={index} confound={confound} />)}
         </TableBody>
       </Table>
     </TableContainer>

@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
-import { populationText } from '../../Texts';
+import { populationText } from '../../data/texts';
 
 const Method = {
   convenience: 'convenience',
