@@ -1,14 +1,8 @@
-import {
-  Modal,
-  Grid,
-  TextField,
-  Chip,
-  Paper,
-  Button,
-} from '@mui/material';
+import { Modal, Grid, TextField, Chip, Paper, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 
+// Style for modal
 const style = {
   position: 'absolute',
   top: '50%',
@@ -17,24 +11,22 @@ const style = {
   minWidth: '50vw',
   p: 5,
 };
-
+// Enum for variable types
 const VariableType = {
   independent: 'independent',
   dependent: 'dependent',
 };
-
+// This is a functional component
 const VariableModal = props => {
-  const { variable, open, handleClose, onSave } = props;
-  console.log('variable', variable);
-  const [type, setType] = useState(variable.type);
-  const [name, setName] = useState(variable.name);
-  const [description, setDescription] = useState(variable.description);
-  const toggleType = () =>
-    setType(
-      type === VariableType.dependent
-        ? VariableType.independent
-        : VariableType.dependent
-    );
+  // Get all the props
+  const { variable, open, handleClose, onSave, onChange } = props;
+  // Function for toggling the variable type
+  const toggleType = () => {
+    if (variable.type === VariableType.independent)
+      onChange({ type: VariableType.dependent });
+    else onChange({ type: VariableType.independent });
+  };
+  // Return a modal
   return (
     <Modal open={open} onClose={handleClose}>
       <Paper sx={style}>
@@ -46,7 +38,7 @@ const VariableModal = props => {
               alignItems="flex-end"
             >
               <Grid item>
-                <Chip label={type} onClick={toggleType} />
+                <Chip label={variable.type} onClick={toggleType} />
               </Grid>
               <Grid item>
                 <Button onClick={handleClose}>
@@ -58,8 +50,8 @@ const VariableModal = props => {
           <Grid item>
             <TextField
               label="variable name"
-              value={name}
-              onChange={e => setName(e.target.value)}
+              value={variable.name}
+              onChange={e => onChange({ name: e.target.value })}
               variant="standard"
               fullWidth
             />
@@ -67,8 +59,8 @@ const VariableModal = props => {
           <Grid item>
             <TextField
               label="explanation"
-              value={description}
-              onChange={e => setDescription(e.target.value)}
+              value={variable.description}
+              onChange={e => onChange({ description: e.target.value })}
               variant="standard"
               fullWidth
             />
@@ -77,7 +69,7 @@ const VariableModal = props => {
             <Button
               onClick={() => {
                 handleClose();
-                onSave(variable.id, type, name, description);
+                onSave(variable);
               }}
             >
               Done

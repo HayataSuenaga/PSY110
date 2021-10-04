@@ -1,26 +1,47 @@
-import { Grid, Button, Card, TextField, useTheme, Typography } from '@mui/material';
+import { Grid, Button, Card, TextField, Typography } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { hypothesis as hypothesisText } from '../../data/texts';
+import { useState } from 'react';
 
 import OpDefModal from './OpDefModal';
 import OpDefTable from './OpDefTable';
 
-import { hypothesis } from '../../data/texts';
-import { useState } from 'react';
-
-const createOpDef = (term, def) => ({ term, def });
-const opDefs = [
-  createOpDef('Term1', 'This is the definition for Term1'),
-  createOpDef('Term2', 'This is the definition for Term2'),
-  createOpDef('Term3', 'This is the definition for Term3'),
-];
+import { updateHypothesis, addOpDef, deleteOpDef, updateOpDef } from '../../store/experiment';
 
 const HypothesisPage = () => {
+  const opDefs = useSelector(state => state.opDefs);
+  const hypothesis = useSelector(state => state.hypothesis);
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
+  const [chosenDef, setChosenDef] = useState({});
+
+  const onHypothesisChange = hypothesis => dispatch(updateHypothesis({ hypothesis }))
+
+  const onSelect = def => {
+    console.log(def);
+    setChosenDef(def);
+    setOpen(true);
+  };
+
+  const onChange = change => setChosenDef({ ...chosenDef, ...change });
+
+  const onSave = () => {
+    if (chosenDef.id === undefined) dispatch(addOpDef(chosenDef));
+    else dispatch(updateOpDef(chosenDef));
+    setOpen(false);
+  };
+
+  const onDelete = id => dispatch(deleteOpDef({ id }));
+  const onClose = id => setOpen(false);
+
   return (
     <>
       <Grid container direction="column" spacing={2}>
         <Grid item>
           <Card sx={{ p: 2 }}>
-            <Typography variant="body2">{hypothesis}</Typography>
+            <Typography variant="body2">{hypothesisText}</Typography>
           </Card>
         </Grid>
         <Grid item>
@@ -31,21 +52,20 @@ const HypothesisPage = () => {
             minRows={4}
             variant="outlined"
             sx={{ width: '100%' }}
+            value={hypothesis}
+            onChange={e => onHypothesisChange(e.target.value)}
           />
         </Grid>
         <Grid item>
           <Card sx={{ p: 2 }}>
-            <Typography variant="body2">{hypothesis}</Typography>
+            <Typography variant="body2">{hypothesisText}</Typography>
           </Card>
         </Grid>
         <Grid item>
-          <OpDefTable opDefs={opDefs} />
-        </Grid>
-        <Grid item>
-          <Button onClick={() => setOpen(true)}>Click Me!</Button>
+          <OpDefTable opDefs={opDefs} onSelect={onSelect} onDelete={onDelete} />
         </Grid>
       </Grid>
-      <OpDefModal open={open} setOpen={setOpen} />
+      <OpDefModal open={open} onClose={onClose} opDef={chosenDef} onChange={onChange} onSave={onSave} />
     </>
   );
 };

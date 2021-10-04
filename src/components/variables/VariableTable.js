@@ -10,14 +10,15 @@ import {
 } from '@mui/material';
 import VariableRow from './VariableRow';
 
-const blankVariable = {
+// A default variable for a new variable creation
+const getBlankVariable = () => ({
   id: undefined,
-  type: 'dependent',
-  name: 'fuck fuck fuck',
-  description: 'fuck fuck fuck',
-};
+  type: 'independent',
+  name: '',
+  description: ''
+});
 
-const VariableTable = ({ variables, setOpen, onSelect, onDelete }) => {
+const VariableTable = ({ variables, onSelect, onDelete }) => {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -27,10 +28,7 @@ const VariableTable = ({ variables, setOpen, onSelect, onDelete }) => {
             <TableCell>Variable name</TableCell>
             <TableCell>Description</TableCell>
             <TableCell>
-              <Button onClick={() => {
-                onSelect(blankVariable);
-                setOpen(true);
-              }}>
+              <Button onClick={() => onSelect(getBlankVariable())}>
                 Add
               </Button>
             </TableCell>
@@ -41,7 +39,6 @@ const VariableTable = ({ variables, setOpen, onSelect, onDelete }) => {
             <VariableRow
               key={index}
               variable={variable}
-              setOpen={setOpen}
               onSelect={onSelect}
               onDelete={onDelete}
             />

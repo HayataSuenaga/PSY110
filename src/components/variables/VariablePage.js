@@ -15,14 +15,21 @@ import {
 const Variables = () => {
   const [open, setOpen] = useState(false);
   const [chosenVariable, setChosenVariable] = useState({});
-
+  // Get the dispatch function from the store
   const dispatch = useDispatch();
+  // Get the variables from the store
   const variables = useSelector(state => state.variables);
-
-  const onSave = (id, type, name, description) => {
+  // Dispatch actions when user saved a variable on modal
+  const onSave = variable => {
+    const { id, type, name, description } = chosenVariable;
     if (id === undefined) dispatch(addVariable(type, name, description));
     else dispatch(updateVariable(id, type, name, description));
   };
+  // Handle user inputs on modal
+  const onChange = change => {
+    setChosenVariable({ ...chosenVariable, ...change });
+  }
+  // Dispatch the deleteVariable action when user deletes a variable
   const onDelete = id => dispatch(deleteVariable(id));
 
   return (
@@ -38,7 +45,10 @@ const Variables = () => {
             open={open}
             setOpen={setOpen}
             variables={variables}
-            onSelect={setChosenVariable}
+            onSelect={variable => {
+              setChosenVariable(variable);
+              setOpen(true);
+            }}
             onDelete={onDelete}
           />
         </Grid>
@@ -46,6 +56,7 @@ const Variables = () => {
       <VariableModal
         open={open}
         handleClose={() => setOpen(false)}
+        onChange={onChange}
         onSave={onSave}
         variable={chosenVariable}
       />

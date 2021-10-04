@@ -6,12 +6,18 @@ import {
   TableRow,
   Button,
   TableBody,
-  Paper
+  Paper,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import OpDefRow from './OpDefRow';
 
-const OpDefTable = ({ opDefs }) => {
+const getBlankDef = () => ({
+  id: undefined,
+  term: '',
+  def: '',
+});
+
+const OpDefTable = ({ opDefs, onSelect, onDelete }) => {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -21,13 +27,20 @@ const OpDefTable = ({ opDefs }) => {
             <TableCell>Definition</TableCell>
             <TableCell>
               <Button>
-                <AddIcon />
+                <AddIcon onClick={() => onSelect(getBlankDef())} />
               </Button>
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {opDefs.map((opDef, index) => <OpDefRow key={index} opDef={opDef} />)}
+          {opDefs.map((opDef, index) => (
+            <OpDefRow
+              key={index}
+              opDef={opDef}
+              onSelect={onSelect}
+              onDelete={onDelete}
+            />
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

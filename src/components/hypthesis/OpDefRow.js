@@ -2,16 +2,16 @@ import { Button, TableRow, TableCell } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-const OpDefRow = ({ opDef }) => {
+const OpDefRow = ({ opDef, onSelect, onDelete }) => {
   return (
     <TableRow>
       <TableCell>{opDef.term}</TableCell>
       <TableCell>{opDef.def}</TableCell>
       <TableCell>
-        <Button>
+        <Button onClick={() => onSelect(opDef)}>
           <EditIcon />
         </Button>
-        <Button>
+        <Button onClick={() => onDelete(opDef.id)}>
           <DeleteIcon />
         </Button>
       </TableCell>

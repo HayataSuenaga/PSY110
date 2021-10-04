@@ -47,7 +47,7 @@ const experimentSlice = createSlice({
     updateVariable: (state, action) => {
       const { id } = action.payload;
       const index = state.variables.findIndex(variable => variable.id === id);
-      state.variable[index] = action.payload;
+      state.variables[index] = action.payload;
       return state;
     },
     addConfound: (state, action) => {
@@ -69,29 +69,29 @@ const experimentSlice = createSlice({
   }
 });
 
-// export const {
-//   updateHypothesis,
-//   addOpDef,
-//   deleteOpDef,
-//   updateOpDef,
-//   addVariable,
-//   deleteVariable,
-//   updateVariable,
-//   addConfound,
-//   deleteConfound,
-//   updateConfound
-// } = experimentSlice.actions;
+export const {
+  updateHypothesis,
+  addOpDef,
+  deleteOpDef,
+  updateOpDef,
+  // addVariable,
+  // deleteVariable,
+  // updateVariable,
+  addConfound,
+  deleteConfound,
+  updateConfound
+} = experimentSlice.actions;
 
 const { actions } = experimentSlice;
-export const updateHypothesis = hypothesis => actions.updateHypothesis({ hypothesis });
-export const addOpDef = (term, def) => actions.addOpDef({ term, def });
-export const deleteOpDef = id => actions.deleteOpDef({ id });
-export const updateOpDef = (id, term, def) => actions.updateOpDef({ id, term, def });
+// export const updateHypothesis = hypothesis => actions.updateHypothesis({ hypothesis });
+// export const addOpDef = (term, def) => actions.addOpDef({ term, def });
+// export const deleteOpDef = id => actions.deleteOpDef({ id });
+// export const updateOpDef = (id, term, def) => actions.updateOpDef({ id, term, def });
 export const addVariable = (type, name, description) => actions.addVariable({ type, name, description });
 export const deleteVariable = id => actions.deleteVariable({ id });
 export const updateVariable = (id, type, name, description) => actions.updateVariable({ id, type, name, description });
-export const addConfound = (name, measure) => actions.addConfound({ name, measure });
-export const deleteConfound = id => actions.deleteConfound({ id });
-export const updateConfound = (id, name, measure) => actions.updateConfound({id, name, measure});
+// export const addConfound = (name, measure) => actions.addConfound({ name, measure });
+// export const deleteConfound = id => actions.deleteConfound({ id });
+// export const updateConfound = (id, name, measure) => actions.updateConfound({id, name, measure});
 
 export default experimentSlice.reducer;
