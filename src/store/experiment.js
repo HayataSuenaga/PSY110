@@ -6,6 +6,7 @@ const initialState = {
   opDefs: [],
   variables: [],
   population: '',
+  samplingMethod: '',
   sample: '',
   confounds: []
 };
@@ -50,6 +51,15 @@ const experimentSlice = createSlice({
       state.variables[index] = action.payload;
       return state;
     },
+    updatePopulation: (state, action) => {
+      state.population = action.payload.population;
+    },
+    updateSamplingMethod: (state, action) => {
+      state.samplingMethod = action.payload.samplingMethod;
+    },
+    updateSample: (state, action) => {
+      state.sample = action.payload.sample;
+    },
     addConfound: (state, action) => {
       const { name, measure } = action.payload;
       state.confounds.push(createConfound(name, measure));
@@ -77,6 +87,9 @@ export const {
   // addVariable,
   // deleteVariable,
   // updateVariable,
+  updatePopulation,
+  updateSamplingMethod,
+  updateSample,
   addConfound,
   deleteConfound,
   updateConfound

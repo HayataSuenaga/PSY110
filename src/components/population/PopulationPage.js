@@ -8,9 +8,15 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { populationText } from '../../data/texts';
+
+import {
+  updatePopulation,
+  updateSamplingMethod,
+  updateSample,
+} from '../../store/experiment';
 
 const Method = {
   convenience: 'convenience',
@@ -18,16 +24,16 @@ const Method = {
 };
 
 const PopulationPage = () => {
-  const [population, setPopulation] = useState('');
-  const [method, setMethod] = useState('');
-  const [sample, setSample] = useState('');
+  const population = useSelector(state => state.population);
+  const samplingMethod = useSelector(state => state.samplingMethod);
+  const sample = useSelector(state => state.sample);
+  const dispatch = useDispatch();
 
-  const handleChange = event => setMethod(event.target.value);
   return (
     <>
       <Grid container direction="column" spacing={2}>
         <Grid item>
-          <Paper sx={{p: 2}}>
+          <Paper sx={{ p: 2 }}>
             <Typography variant="body2">{populationText}</Typography>
           </Paper>
         </Grid>
@@ -38,13 +44,23 @@ const PopulationPage = () => {
             fullWidth
             multiline
             minRows={4}
-            onChange={e => setPopulation(e.target.value)}
+            value={population}
+            onChange={e =>
+              dispatch(updatePopulation({ population: e.target.value }))
+            }
           />
         </Grid>
         <Grid item>
           <FormControl variant="standard" fullWidth>
             <InputLabel>Sampling Method</InputLabel>
-            <Select value={method} onChange={e => setMethod(e.target.value)}>
+            <Select
+              value={samplingMethod}
+              onChange={e =>
+                dispatch(
+                  updateSamplingMethod({ samplingMethod: e.target.value })
+                )
+              }
+            >
               <MenuItem value={Method.convenience}>
                 Convenience Sampling
               </MenuItem>
@@ -58,7 +74,8 @@ const PopulationPage = () => {
             variant="standard"
             fullWidth
             multiline
-            onChange={e => setSample(e.target.value)}
+            value={sample}
+            onChange={e => dispatch(updateSample({ sample: e.target.value }))}
           />
         </Grid>
       </Grid>
