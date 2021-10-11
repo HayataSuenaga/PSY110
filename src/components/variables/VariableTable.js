@@ -27,7 +27,7 @@ const VariableTable = ({ variables, onSelect, onDelete }) => {
             <TableCell>Variable type</TableCell>
             <TableCell>Variable name</TableCell>
             <TableCell>Description</TableCell>
-            <TableCell>
+            <TableCell sx={{textAlign: "end"}}>
               <Button onClick={() => onSelect(getBlankVariable())}>
                 Add
               </Button>

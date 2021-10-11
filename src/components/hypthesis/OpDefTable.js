@@ -25,7 +25,7 @@ const OpDefTable = ({ opDefs, onSelect, onDelete }) => {
           <TableRow>
             <TableCell>Term</TableCell>
             <TableCell>Definition</TableCell>
-            <TableCell>
+            <TableCell sx={{textAlign: 'end'}}>
               <Button>
                 <AddIcon onClick={() => onSelect(getBlankDef())} />
               </Button>

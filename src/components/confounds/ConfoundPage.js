@@ -24,7 +24,7 @@ const ConfoundPage = () => {
         </Paper>
       </Grid>
       <Grid item>
-        <ConfoundTable confounds={confounds} />
+        <ConfoundTable />
       </Grid>
     </Grid>
   );

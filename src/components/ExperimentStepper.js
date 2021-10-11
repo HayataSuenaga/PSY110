@@ -4,8 +4,7 @@ import {
   Stepper,
   Step,
   StepLabel,
-  Button,
-  Typography,
+  Button
 } from '@mui/material';
 
 import HypothesisPage from './hypthesis/HypothesisPage';
@@ -14,6 +13,7 @@ import PopulationPage from './population/PopulationPage';
 import ConfoundPage from './confounds/ConfoundPage';
 
 import { useTheme } from '@mui/material';
+import Result from './Result';
 
 const steps = ['Hypothesis', 'Variables', 'Sample', 'Potential confounds'];
 
@@ -40,7 +40,7 @@ const ExperimentStepper = () => {
   const StepFooter = () => (
     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
       <Button
-        color="inherit"
+        variant="contained"
         disabled={activeStep === 0}
         onClick={handleBack}
         sx={{ mr: 1 }}
@@ -48,7 +48,7 @@ const ExperimentStepper = () => {
         Back
       </Button>
       <Box sx={{ flex: '1 1 auto' }} />
-      <Button onClick={handleNext}>
+      <Button onClick={handleNext} variant="contained">
         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
       </Button>
     </Box>
@@ -71,8 +71,9 @@ const ExperimentStepper = () => {
 
   const FinalPage = () => (
     <>
-      <Typography sx={{ mt: 2, mb: 1 }}>All steps completed</Typography>
+      <Result />
       <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+        <Button variant="contained" onClick={handleBack}>Back</Button>
         <Box sx={{ flex: '1 1 auto' }} />
         <Button onClick={handleReset}>Reset</Button>
       </Box>
