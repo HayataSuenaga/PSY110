@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/PSY110/static/js/main.582a7182.chunk.js",
+    "main.js.map": "/PSY110/static/js/main.582a7182.chunk.js.map",
+    "runtime-main.js": "/PSY110/static/js/runtime-main.b6c0189d.js",
+    "runtime-main.js.map": "/PSY110/static/js/runtime-main.b6c0189d.js.map",
+    "static/js/2.355a2fc6.chunk.js": "/PSY110/static/js/2.355a2fc6.chunk.js",
+    "static/js/2.355a2fc6.chunk.js.map": "/PSY110/static/js/2.355a2fc6.chunk.js.map",
+    "index.html": "/PSY110/index.html",
+    "static/js/2.355a2fc6.chunk.js.LICENSE.txt": "/PSY110/static/js/2.355a2fc6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b6c0189d.js",
+    "static/js/2.355a2fc6.chunk.js",
+    "static/js/main.582a7182.chunk.js"
+  ]
+}
